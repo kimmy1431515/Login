@@ -1,20 +1,34 @@
 {
-  "name": "login",
-  "version": "1.0.0",
-  "description": "Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).",
-  "main": "svelte.config.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kimmy14315/Login.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "homepage": "https://github.com/Kimmy14315/Login#readme",
   "bugs": {
     "url": "https://github.com/Kimmy14315/Login/issues"
   },
-  "homepage": "https://github.com/Kimmy14315/Login#readme"
+	"name": "login",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/kit": "^1.5.0",
+		"svelte": "^3.54.0",
+		"vite": "^4.2.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@sveltejs/adapter-static": "^2.0.1",
+		"argon2": "^0.30.3",
+		"argon2-browser": "^1.18.0",
+		"multiformats": "^11.0.2",
+		"pouchdb": "^8.0.1",
+		"tweetnacl": "^1.0.3",
+		"tweetnacl-util": "^0.15.1"
+	}
 }
