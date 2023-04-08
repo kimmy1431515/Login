@@ -75,25 +75,7 @@ main {
     box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
     cursor: pointer;
 }
-footer {
-    height: 10vh;
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: -5px -5px 10px rgb(0,0,0,0.3);
-}
-footer > p {
-    text-align: center;
-    font-family: 'system-ui';
-    letter-spacing: 3px;
-}
-footer > p > a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
+
 </style>
 
 <body>
