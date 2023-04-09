@@ -1,15 +1,6 @@
-<style> 
-h1{
-	background-color: red;
-	padding: 10px;
-	padding-right: 5px;
-}
-
-</style>
-
-
-
-
-
-<h1>hi my name is joycel</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="hero bg-gray">
+  <div class="hero-body">
+    <h1>Hero title</h1>
+    <p>This is a hero example</p>
+  </div>
+</div>

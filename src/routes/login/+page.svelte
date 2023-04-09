@@ -1,103 +1,47 @@
-<style>
-* {
-    padding: 0px;
-    margin: 0px;
-}
-body {
-    background-color: black;
-}
-header {
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 15vh;
-    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
-}
-h1 {
-    letter-spacing: 1.5vw;
-    font-family: 'system-ui';
-    text-transform: uppercase;
-    text-align: center;
-}
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 75vh;
-    width: 100%;
-    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Mountains-1412683.svg/1280px-Mountains-1412683.svg.png) no-repeat center center;
-    background-size: cover;
-}
-.form_class {
-    width: 500px;
-    padding: 40px;
-    border-radius: 8px;
-    background-color: white;
-    font-family: 'system-ui';
-    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
-}
-.form_div {
-    text-transform: uppercase;
-}
-.info_div {
-    text-align: center;
-    margin-top: 20px;
-}
-.info_div {
-    letter-spacing: 1px;
-}
-.field_class {
-    width: 100%;
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
-    padding: 5px 0px;
-    text-indent: 6px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-family: 'system-ui';
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-}
-.submit_class {
-    border-style: none;
-    border-radius: 5px;
-    background-color: #FFE6D4;
-    padding: 8px 20px;
-    font-family: 'system-ui';
-    text-transform: uppercase;
-    letter-spacing: .8px;
-    display: block;
-    margin: auto;
-    margin-top: 10px;
-    box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
-    cursor: pointer;
-}
+<script>
+  import createSigningKeyPair from "$lib/createSigningKeyPair.js"
+	import { onMount } from 'svelte'
+  import { user } from "$lib/stores.js"
+  let username, password
 
-</style>
+  const setUsername = (response) => { $user =  response.username; console.log(response); console.log(response.username) }
 
-<body>
-    <header>
-        <h1>Add mo na yan</h1>
-    </header>
-    <main>
-        <form id="login_form" class="form_class" action="" method="post">
-            <div class="form_div">
-                <h2>Username:</h2>
-                <input class="field_class" name="login_txt" type="text" placeholder="Please enter username" >
-                <h2>Password:</h2>
-                <input id="pass" class="field_class" name="password_txt" type="password" placeholder="Please enter password">
-                <button class="submit_class" type="submit" form="login_form" onclick="return validarLogin()">Enter</button>
-            </div>
-            <div class="info_div">
-                <p>Already have an account? <a href="register/reg-form.php">Register here</a></p>
-            </div>
-        </form>
-    </main>
-</body>
+const login =
+  async (e) => {
+    const clientSideUser = 
+      { username: e.target.username.value
+      , password: e.target.password.value
+      }
+    const signingKeyPair = await createSigningKeyPair(clientSideUser)
+    const user = 
+      { username: clientSideUser.username
+      , publicKeyBase64: signingKeyPair.publicKeyBase64
+      }
+    const response = await fetch("https://add-mo-na-yan.vercel.app/api/user/login",
+        { method: "POST"
+        , mode: "cors"
+        , cache: "no-cache" 
+        , credentials: "same-origin"
+        , headers: { "Content-Type": "application/json" }
+        , body: JSON.stringify(user)
+        })
+      console.log(response)
+    return response
+    }
 
+    onMount(async () => {})
 
-
-
+</script>
+<h1>Login</h1>
+<h2>Welcome {$user}</h2>
+<form method="POST" on:submit|preventDefault={login}>
+  <label>
+    <img src="user.svg" alt="Icon of User">
+    <input type="text" name="username" bind:value="{username}">
+  </label>
+  <label>
+    <img src="shield.svg" alt="Icon of a Shield representing password">
+    <input type="password" name="password" bind:value="{password}">
+  </label>
+  <button type="submit">Login</button>
+</form>

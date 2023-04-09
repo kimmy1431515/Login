@@ -1,34 +1,39 @@
 {
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Kimmy14315/Login.git"
-  },
-  "homepage": "https://github.com/Kimmy14315/Login#readme",
-  "bugs": {
-    "url": "https://github.com/Kimmy14315/Login/issues"
-  },
-	"name": "login",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.5.0",
-		"svelte": "^3.54.0",
-		"vite": "^4.2.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"@sveltejs/adapter-static": "^2.0.1",
-		"argon2": "^0.30.3",
-		"argon2-browser": "^1.18.0",
-		"multiformats": "^11.0.2",
-		"pouchdb": "^8.0.1",
-		"tweetnacl": "^1.0.3",
-		"tweetnacl-util": "^0.15.1"
-	}
+        "name": "login",
+        "version": "0.0.1",
+        "private": true,
+        "scripts": {
+                "dev": "vite dev",
+                "build": "vite build",
+                "preview": "vite preview"
+        },
+        "devDependencies": {
+                "@sveltejs/adapter-auto": "^2.0.0",
+                "@sveltejs/kit": "^1.5.0",
+                "svelte": "^3.54.0",
+                "vite": "^4.2.0"
+        },
+        "type": "module",
+        "dependencies": {
+                "@astrajs/rest": "^0.3.4",
+                "@beyonk/svelte-notifications": "^4.2.0",
+                "@node-rs/argon2": "^1.4.0",
+                "@sphereon/isomorphic-argon2": "^1.0.1",
+                "@sveltejs/adapter-static": "^2.0.1",
+                "@sveltejs/adapter-vercel": "^2.4.1",
+                "argon2": "^0.30.3",
+                "argon2-browser": "^1.18.0",
+                "argon2-browser-bw": "^1.18.6",
+                "mdbsvelte": "^1.0.12",
+                "multiformats": "^11.0.2",
+                "pouchdb": "^8.0.1",
+                "ramda": "^0.29.0",
+                "sass": "^1.61.0",
+                "spectre.css": "^0.5.9",
+                "svelte-preprocess": "^5.0.3",
+                "toastify-js": "^1.12.0",
+                "tweetnacl": "^1.0.3",
+                "tweetnacl-util": "^0.15.1",
+                "vite-plugin-wasm": "^3.2.2"
+        }
 }
