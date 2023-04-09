@@ -2,13 +2,19 @@ $primary-color: #66bfbf !default;
 $secondary-color: #f76b8a !default;
 //$light-color: #ffffff;
 //$dark-color: #111;
-body, html {height: 100%;}
+//html {height: 100%;}
+body {min-height: 100vh;}
 @import "../node_modules/spectre.css/src/spectre";
 :root{
   --color-primary: #{$primary-color};
   --color-secondary: #{$secondary-color};
   --color-light: #{$light-color};
   --color-dark: #{$dark-color};
+}
+
+article{padding: 1em;max-width: 40em; margin: 0 auto;}
+* {
+  transition-duration: 200ms;
 }
 /*
 $primary-color: #5755d9 !default;
