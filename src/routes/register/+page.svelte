@@ -14,20 +14,36 @@ import util from  "tweetnacl-util"
 nacl.util = util
   let username = ""
     let password = ""
+    let confirmPassword = ""
     let infoMessage = ""
+    let acceptTOU = false
   const baseUrl = "https://add-mo-na-yan.vercel.app"
   const url = "https://add-mo-na-yan.vercel.app/api/user/register"
 
   const register = 
     async () => {
-      const passwordHash = nacl.util.encodeBase64(nacl.hash(nacl.util.decodeUTF8(password)))
-      const response = await post(url,{username: username, publicKeyBase64: passwordHash })
 
-        console.log('passwordHash')
-        console.log(passwordHash)
-        console.log('username')
-        console.log(username)
+      if ( username.length < 5) {
+        toast("your username must be at least 5 characters")
+        return
+      } else if ( password.length < 6) {
+        toast("your password must be at least 6 characters")
+        return
+      } else if (password !== confirmPassword) {
+        toast("Passwords are not the same.")
+        return
+      } else if (!acceptTOU){
+        toast("Please accept the Terms of Usage")
+        return
+      }
+
+      //const passwordHash = nacl.util.encodeBase64(nacl.hash(nacl.util.decodeUTF8(password)))
+      const keyPair = await createSigningKeyPair({username, password})
+        toast(JSON.stringify(keyPair))
+      const response = await post(url,{username: username, publicKeyBase64: keyPair.publicKeyBase64 })
+
         /*
+      const key = await createSigningKeyPair({username, password})
       const response = await pipe
       ( createSigningKeyPair
       , andThen( x => post(url, pick(["username","publicKeyBase64"],x)))
@@ -71,6 +87,32 @@ nacl.util = util
     </div>
   </div>
 
+  <div class="form-group">
+    <div class="col-3 col-sm-12">
+      <label class="form-label" for="confirmPassword">Confirm Password</label>
+    </div>
+    <div class="col-9 col-sm-12">
+      <input class="form-input" type="password" name="confirmPassword" bind:value={confirmPassword}>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-checkbox" for="input-acceptTOU">I accept the Terms of Use & Privacy Policy
+      <input type="checkbox" id="input-acceptTOU" name="acceptTOU" bind:checked={acceptTOU} />
+      <i class="form-icon"></i>
+    </label>
+  </div>
+  <!--
+  <div class="form-group">
+    <div class="col-3 col-sm-12">
+      <label class="form-label" for="acceptTOU">I accept the Terms of Use & Privacy Policy</label>
+    </div>
+    <div class="">
+      <input class="form-input" type="checkbox" name="acceptTOU" bind:value={acceptTOU}>
+    </div>
+  </div>
+  -->
+
   <button type="submit" class="btn btn-primary btn-block">Register</button>
 
 </form>
@@ -81,8 +123,8 @@ nacl.util = util
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    background: linear-gradient( rgba(0,0,0,.85),rgba(0,0,0,.85) ), url("https://wallpapercave.com/wp/wp3980262.jpg");
+    height: 100vh;
+    background: linear-gradient( rgba(0,0,0,.5),rgba(0,0,0,.5) ), url("https://wallpapercave.com/wp/wp3980262.jpg");
     background-size: cover;
   }
   .card{
@@ -90,5 +132,7 @@ nacl.util = util
     padding: 2em;
     background: var(--color-light);
     margin: 2 auto;
+    border: .3em solid var(--color-primary);
+    border-radius: .2em;
   }
 </style>
