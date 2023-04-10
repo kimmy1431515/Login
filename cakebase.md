@@ -87,7 +87,7 @@ CAKE ICING
 
 - Royal Icing-Whether you're looking to add a touch of sophistication to a birthday cake or want to create a stunning wedding cake, royal icing is the perfect choice. Its versatile nature and stunning finish make it a go-to for any special occasion.
 
-Powdered sugar-It is commonly used to create a beautiful dusting on top of cakes, cookies, and pastries.
+- Powdered sugar-It is commonly used to create a beautiful dusting on top of cakes, cookies, and pastries.
 
 - Whipped cream- is a velvety and fluffy topping that's made by whipping heavy cream until it becomes light and airy. With its luscious texture and delightful flavor, whipped cream is the perfect accompaniment to any cake
 
